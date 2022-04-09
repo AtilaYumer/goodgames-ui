@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  urlApi: 'https://konak-goodgames-be.herokuapp.com'
 };
