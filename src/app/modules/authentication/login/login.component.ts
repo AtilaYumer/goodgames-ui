@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   login(): void {
     const { email, password } = this.loginFormGroup.value;
     const loginDto: LoginDto = new LoginDto(email, password);
-    this.userService.login(loginDto).subscribe({ 
+    this.userService.login$(loginDto).subscribe({ 
       next: (resp) => {
         this.router.navigateByUrl('/home');
       },
