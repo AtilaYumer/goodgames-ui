@@ -1,0 +1,33 @@
+<form class="register" [formGroup]="loginFormGroup" (submit)="login()">
+    <div class="container">
+        <h1>Login form</h1>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input formControlName="email" type="text" class="form-control" id="email"
+                [class.input-error]="loginFormGroup.controls['email'].touched && loginFormGroup.controls['email'].invalid">
+        </div>
+        <ng-container *ngIf="loginFormGroup.controls['email'].touched && loginFormGroup.controls['email'].invalid">
+            <p *ngIf="loginFormGroup.controls['email'].errors?.['required']" class="error">
+                Email is required!
+            </p>
+            <p *ngIf="loginFormGroup.controls['email'].errors?.['pattern']" class="error">
+                Email not valid!
+            </p>
+        </ng-container>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input formControlName="password" type="password" class="form-control" id="password" placeholder="******"
+                [class.input-error]="loginFormGroup.controls['password'].touched && loginFormGroup.controls['password'].invalid">
+        </div>
+        <ng-container
+            *ngIf="loginFormGroup.controls['password'].touched && loginFormGroup.controls['password'].invalid">
+            <p *ngIf="loginFormGroup.controls['password'].errors?.['required']" class="error">
+                Password is required!
+            </p>
+            <p *ngIf="loginFormGroup.controls['password'].errors?.['minlength']" class="error">
+                Password must be at least 5 characters!
+            </p>
+        </ng-container>
+    </div>
+    <button [disabled]="loginFormGroup.invalid" type="submit" class="btn btn-success">Login</button>
+</form>

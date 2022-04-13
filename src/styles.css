@@ -5,3 +5,11 @@ body {
     background-image: fixed;
     background-attachment: fixed;
 }
+
+input.ng-valid {
+    border-left: 5px solid #42A948;
+}
+
+input.ng-invalid.ng-touched {
+    border-left: 5px solid #A94442; 
+}

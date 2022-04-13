@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
-import { SharedModule } from './modules/shared/shared.module';
-import { HomeComponent } from './modules/shared/home/home.component';
+import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { HeaderComponent } from './modules/core/header/header.component';
+import { JwtInterceptor } from './modules/core/interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -18,9 +18,16 @@ import { HeaderComponent } from './modules/core/header/header.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AuthenticationModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
