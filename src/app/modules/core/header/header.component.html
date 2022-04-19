@@ -11,13 +11,15 @@
                     <a class="nav-link active" routerLink="/home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/home">Game titles</a>
+                    <a class="nav-link" routerLink="/game-titles">Game titles</a>
                 </li>
+                <ng-container *ngIf="isLoggedIn | async">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/game-titles/new">Add new game title</a>
+                    </li>
+                </ng-container>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Add new game title</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" routerLink="/about">About</a>
                 </li>
             </ul>
             <div class="d-flex">

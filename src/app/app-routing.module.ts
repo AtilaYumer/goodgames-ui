@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'game-titles',
+    loadChildren: () => import('./modules/game-titles/game-titles.module').then(m => m.GameTitlesModule)
   }
 ];
 
