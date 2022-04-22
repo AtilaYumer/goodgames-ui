@@ -2,7 +2,7 @@
   <mat-card-header>
     <mat-card-title>{{gameTitle.title}}</mat-card-title>
   </mat-card-header>
-  <img mat-card-image src={{gameTitle.imageUrl}} alt="Photo of a Shiba Inu">
+  <img class="card-image" mat-card-image src={{gameTitle.imageUrl}} alt="Photo of a Shiba Inu" onerror="this.src='../../../../assets/images/dual-shock.jpeg'">
   <mat-card-content>
     <p>{{gameTitle.description}}</p>
   </mat-card-content>
