@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { IUser } from '../../model/IUser';
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit {
   isLoggedIn?: Observable<boolean>;
   user?: Observable<IUser>;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.isLoggedIn = this.userService.isLoggedIn$;
@@ -22,5 +23,6 @@ export class HeaderComponent implements OnInit {
   
   logout(): void {
     this.userService.logout();
+    this.router.navigateByUrl('/home');
   }
 }

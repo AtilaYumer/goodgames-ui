@@ -10,6 +10,7 @@ import { LoginDto } from '../../model/LoginDto';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  errorMessage!: string;
 
   loginFormGroup: FormGroup = this.fb.group({
     'email': new FormControl(null, [Validators.required, Validators.pattern(/^[a-zA-Z\\.]{2,}@[a-zA-Z]{2,}\.[a-zA-Z]{2,}$/)]),
@@ -29,8 +30,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/home');
       },
       error: (error) => {
-        console.log(error);
-
+        this.errorMessage=error.error.message;
       }
     })
   }

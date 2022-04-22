@@ -13,6 +13,7 @@ import { rePasswordValidator } from '../utils/utils';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  errorMessage!: string;
 
   passwordControl = new FormControl(null, [Validators.required, Validators.minLength(5)]);
 
@@ -39,11 +40,10 @@ export class RegisterComponent implements OnInit {
     const userDto: IUser = new UserDto(firstName, lastName, email, passwords.password, passwords.rePassword);
     this.userService.register$(userDto).subscribe({
       next: () => {
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/login');
       },
       error: (error) => {
-        console.log(error);
-
+        this.errorMessage = error.error.message;
       }
     })
   }

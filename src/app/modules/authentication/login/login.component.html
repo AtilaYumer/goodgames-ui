@@ -1,6 +1,9 @@
 <form class="register" [formGroup]="loginFormGroup" (submit)="login()">
     <div class="container">
         <h1>Login form</h1>
+        <ng-container *ngIf="errorMessage">
+            <p class="error">{{errorMessage}}</p>
+        </ng-container>
         <div class="form-group">
             <label for="email">Email</label>
             <input formControlName="email" type="text" class="form-control" id="email"

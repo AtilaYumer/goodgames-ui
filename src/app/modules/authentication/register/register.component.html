@@ -1,6 +1,9 @@
 <form class="register" [formGroup]="registerFormGroup" (submit)="register()">
     <div class="container">
         <h1>Sign up form</h1>
+        <ng-container *ngIf="errorMessage">
+            <p class="error">{{errorMessage}}</p>
+        </ng-container>
         <div class="form-group">
             <label for="firstName">First name</label>
             <input formControlName="firstName" type="text" class="form-control" id="firstName"
