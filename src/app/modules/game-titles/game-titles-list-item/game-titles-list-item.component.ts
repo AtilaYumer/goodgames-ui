@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CreateGameTitleDto } from '../../model/CreateGameTitleDto';
+import { Observable } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 import { GameTitleDto } from '../../model/GameTitleDto';
 
 @Component({
@@ -9,11 +10,14 @@ import { GameTitleDto } from '../../model/GameTitleDto';
 })
 export class GameTitlesListItemComponent implements OnInit {
 
+  isLoggedIn?: Observable<boolean>;
+
   @Input() gameTitle!: GameTitleDto;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.userService.isLoggedIn$;
   }
 
 }

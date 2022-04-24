@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { GameTitleDetailsComponent } from './game-title-details/game-title-details.component';
 import { GameTitlesListComponent } from './game-titles-list/game-titles-list.component';
 import { NewGameTitleComponent } from './new-game-title/new-game-title.component';
 
@@ -10,6 +11,9 @@ const routes: Routes = [
   }, {
     path: 'new',
     component: NewGameTitleComponent
+  }, {
+    path: ":gameTitleId",
+    component: GameTitleDetailsComponent
   }
 ];
 

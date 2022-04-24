@@ -15,7 +15,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.authenticationService.getToken();
-    if (token && !(request.url.match(/users/) && !request.url.match(/users\/info/))) {
+    if (token && !(request.url.match(/users/) && !request.url.match(/users\/info/)) && !(request.method === "GET" && request.url.match(/^.*\/game-titles[\/]{0,1}$/g))) {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`

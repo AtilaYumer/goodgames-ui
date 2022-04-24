@@ -9,13 +9,15 @@ import { GameTitlesListComponent } from './game-titles-list/game-titles-list.com
 import { GameTitlesListItemComponent } from './game-titles-list-item/game-titles-list-item.component';
 import { NewGameTitleComponent } from './new-game-title/new-game-title.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GameTitleDetailsComponent } from './game-title-details/game-title-details.component';
 
 
 @NgModule({
   declarations: [
     GameTitlesListComponent,
     GameTitlesListItemComponent,
-    NewGameTitleComponent
+    NewGameTitleComponent,
+    GameTitleDetailsComponent
   ],
   imports: [
     CommonModule,
