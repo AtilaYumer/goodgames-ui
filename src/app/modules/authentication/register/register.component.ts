@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
   register(): void {
     const { firstName, lastName, email, passwords } = this.registerFormGroup.value;
 
-    const userDto: IUser = new UserDto(firstName, lastName, email, passwords.password, passwords.rePassword);
+    const userDto: IUser = new UserDto(0, firstName, lastName, email, passwords.password, passwords.rePassword);
     this.userService.register$(userDto).subscribe({
       next: () => {
         this.router.navigateByUrl('/login');

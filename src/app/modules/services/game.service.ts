@@ -4,18 +4,12 @@ import { CreateGameTitleDto } from '../model/CreateGameTitleDto';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { IGamePageable } from '../model/IGamePageable';
+import { GameTitleDto } from '../model/GameTitleDto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameTitleService {
-
-  games: CreateGameTitleDto[] = [
-    // { id: 1, name: "Contact 001", description: "Contact 001 des" },
-    // { id: 2, name: "Contact 002", description: "Contact 002 des" },
-    // { id: 3, name: "Contact 003", description: "Contact 003 des" },
-    // { id: 4, name: "Contact 004", description: "Contact 004 des" }
-  ];
 
   constructor(private http: HttpClient) { }
 
@@ -36,5 +30,17 @@ export class GameTitleService {
     return this.http.post<void>(`${environment.urlApi}/game-titles/`, formData, {
       withCredentials: true
     });
+  }
+
+  getGameTitleById$(gameTitleId: number): Observable<GameTitleDto> {
+    return this.http.get<GameTitleDto>(`${environment.urlApi}/game-titles/${gameTitleId}`);
+  }
+
+  like$(gameTitleId: number): Observable<void> {
+    return this.http.post<void>(`${environment.urlApi}/game-titles/${gameTitleId}/like`, {});
+  }
+
+  dislike$(gameTitleId: number): Observable<void> {
+    return this.http.delete<void>(`${environment.urlApi}/game-titles/${gameTitleId}/like`, {});
   }
 }

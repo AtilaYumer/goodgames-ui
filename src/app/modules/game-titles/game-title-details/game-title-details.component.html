@@ -1,19 +1,22 @@
 <mat-card class="example-card">
     <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Shiba Inu</mat-card-title>
+        <mat-card-title>{{gameTitle.title}}</mat-card-title>
         <mat-card-subtitle>Dog Breed</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <img mat-card-image src={{gameTitle.imageUrl}} alt="Game title image"
+        onerror="this.src='../../../../assets/images/dual-shock.jpeg'">
     <mat-card-content>
-        <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
-        </p>
+        <p>{{gameTitle.description}}</p>
     </mat-card-content>
-    <mat-card-actions>
-        <button mat-button>LIKE</button>
+    <mat-card-actions *ngIf="isLoggedIn$">
+        <span>{{gameTitle.likes.length}}</span> likes
+        <button (click)="like()" mat-icon-button style="color: rgb(255, 255, 255, .3);" *ngIf="(isLoggedIn$ |async) && canLike()">
+            <mat-icon>favorite</mat-icon>
+        </button>
+        <button (click)="dislike()" mat-icon-button color="warn" *ngIf="(isLoggedIn$ |async) && !canLike()">
+            <mat-icon>favorite</mat-icon>
+        </button>
         <button mat-button>SHARE</button>
     </mat-card-actions>
 </mat-card>

@@ -18,6 +18,7 @@ const TOKEN_STORAGE_KEY = "auth";
 export class AuthenticationService {
 
   currentUser$: Observable<IUser | undefined> = this.store.select(globalState => globalState.currentUser);
+  isLoggedIn$: Observable<boolean> = this.currentUser$.pipe(map(user => !!user));
 
   constructor(private http: HttpClient, private router: Router, private store: Store<IRootState>) { }
 

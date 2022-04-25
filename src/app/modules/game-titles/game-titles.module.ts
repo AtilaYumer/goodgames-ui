@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
 
 import { GameTitlesRoutingModule } from './game-titles-routing.module';
 import { GameTitlesListComponent } from './game-titles-list/game-titles-list.component';
@@ -27,6 +28,7 @@ import { GameTitleDetailsComponent } from './game-title-details/game-title-detai
     MatGridListModule,
     FormsModule,
     ReactiveFormsModule,
+    MatIconModule
   ]
 })
 export class GameTitlesModule { }
