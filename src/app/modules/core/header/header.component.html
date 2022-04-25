@@ -13,7 +13,7 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/game-titles">Game titles</a>
                 </li>
-                <ng-container *ngIf="isLoggedIn | async">
+                <ng-container *ngIf="isLoggedIn$ | async">
                     <li class="nav-item">
                         <a class="nav-link" routerLink="/game-titles/new">Add new game title</a>
                     </li>
@@ -23,11 +23,11 @@
                 </li>
             </ul>
             <div class="d-flex">
-                <ng-container *ngIf="isLoggedIn | async">
-                    <a class="nav-link" routerLink="/profile">Welcome, {{(user | async)?.email}}</a>
+                <ng-container *ngIf="isLoggedIn$ | async">
+                    <a class="nav-link" routerLink="/profile">Welcome, {{(user$ | async)?.email}}</a>
                     <button (click)="logout()" class="btn btn-light ms-3">Logout</button>
                 </ng-container>
-                <ng-container *ngIf="(isLoggedIn | async) === false">
+                <ng-container *ngIf="(isLoggedIn$ | async) === false">
                     <button routerLink="/register" class="btn btn-light ms-3">Sign up</button>
                     <button routerLink="/login" class="btn btn-light ms-3">Login</button>
                 </ng-container>

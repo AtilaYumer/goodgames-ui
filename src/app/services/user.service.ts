@@ -1,22 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, switchMap, tap } from 'rxjs';
+import { map, Observable, switchMap, tap } from 'rxjs';
 import { UserDto } from '../modules/model/UserDto';
 import { environment } from 'src/environments/environment';
 import { LoginDto } from '../modules/model/LoginDto';
 import { AuthenticationService } from './authentication.service';
 import { IUser } from '../modules/model/IUser';
+import { Store } from '@ngrx/store';
+import { IRootState } from '../+store';
+import { login, logout } from '../+store/action';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  currentUser = new BehaviorSubject<IUser>({} as IUser);
-  loggedIn = new BehaviorSubject<boolean>(false);
+  currentUser$: Observable<IUser | undefined> = this.store.select(globalState => globalState.currentUser);
+  isLoggedIn$ = this.currentUser$.pipe(map(user => !!user));
 
-
-  constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
+  constructor(private http: HttpClient, private authenticationService: AuthenticationService, private store: Store<IRootState>) { }
 
   register$(userDto: UserDto): Observable<void> {
     return this.http.post<void>(`${environment.urlApi}/users`, userDto);
@@ -33,28 +35,14 @@ export class UserService {
         switchMap(() => {
           return this.http.get<IUser>(`${environment.urlApi}/users/info`, { withCredentials: true })
             .pipe(map(user => {
-              this.currentUser.next(user);
-              this.loggedIn.next(true);
+              this.store.dispatch(login({user}));
             }));
         })
       )
   }
 
-  get isLoggedIn$(): Observable<boolean> {
-    return this.loggedIn.asObservable();
-  }
-
-  get loggedInUser$(): Observable<IUser> {
-    return this.currentUser.asObservable();
-  }
-
-  getUserInfo$(): Observable<IUser> {
-    return this.currentUser.asObservable();
-  }
-
   logout(): void {
     this.authenticationService.clearSession();
-    this.currentUser.next({} as IUser);
-    this.loggedIn.next(false);
+    this.store.dispatch(logout());
   }
 }
