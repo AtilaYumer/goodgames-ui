@@ -1,0 +1,10 @@
+<div class="comments" *ngIf="comments">
+    <h6 *ngIf="comments.length < 1">No Comments found</h6>
+    <ul *ngIf="comments.length > 0">
+        <li *ngFor="let comment of comments;">
+            <div class="col-12 col-sm-12 comment-container">
+                <app-comments-list-item [comment]="comment" (commentEvent)="commentEvent.emit()"></app-comments-list-item>
+            </div>
+        </li>
+    </ul>
+</div>

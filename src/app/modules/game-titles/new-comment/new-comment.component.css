@@ -1,0 +1,17 @@
+textarea {
+    resize: none;
+    flex: 0 1 100%; 
+    border: 1px solid;
+    padding: 0.3em;
+    border-left: 0.3em solid green;
+    border-top-right-radius: 0.3em;
+    border-bottom-right-radius: 0.3em;
+}
+
+.comment-area {
+    padding: 0 25px 5px 25px;
+}
+
+.input-error {
+    border-left-color: red;
+}

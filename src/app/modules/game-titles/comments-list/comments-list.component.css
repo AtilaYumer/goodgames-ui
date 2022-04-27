@@ -1,0 +1,26 @@
+.comment-container {
+    padding: 10px 25px 0;
+    text-align: left;
+}
+
+.comment-container .right {
+    margin-left: 60px;
+}
+
+.comments ul {
+    list-style: none;
+    padding: 0;
+}
+
+.comments ul li {
+    border-bottom: #EEE 1px solid;
+    margin-bottom: 10px;
+}
+
+.comments ul li:last-child {
+    border-bottom: none;
+}
+
+.comments h6 {
+    margin-left: 15px;
+}

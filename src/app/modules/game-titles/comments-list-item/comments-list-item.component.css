@@ -1,0 +1,31 @@
+
+p {
+    background: #e9ebee;
+    padding: 6px 10px;
+}
+
+.divider {
+    margin: 0 5px;
+    width: 1px;
+    height: 20px;
+    background: #ccc;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.actions {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.actions .btn {
+    font-size: 12px;
+}
+
+.collapsible {
+    display: inline-block;
+}
+
+.childCommentBox {
+    margin-left: 15px;
+}

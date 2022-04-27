@@ -1,12 +1,19 @@
-.example-card {
-    width: 30%;
-    margin: 5em auto 0;
+.game-title-card {
+    width: 70%;
+    margin: 0 auto 0;
     text-align: center;
-    max-width: 400px;
+    max-width: 500px;
   }
   
-  .example-header-image {
+  .game-title-header-image {
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
+  }
+
+  .comment-card {
+    width: 70%;
+    margin: 0 auto 0;
+    text-align: center;
+    max-width: 500px;
   }
   

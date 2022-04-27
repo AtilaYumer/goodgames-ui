@@ -28,7 +28,7 @@ export class NewGameTitleComponent implements OnInit {
     const { title, description } = this.gameTitleForm.value;
     const gameTitle: CreateGameTitleDto = new CreateGameTitleDto(title, description);
     gameTitle.image = this.image;
-    this.gameTitleService.create$(gameTitle).subscribe({ 
+    this.gameTitleService.create$(gameTitle).subscribe({
       next: () => {
         this.router.navigateByUrl('/game-titles');
       },

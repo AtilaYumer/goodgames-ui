@@ -1,22 +1,43 @@
-<mat-card class="example-card">
-    <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{gameTitle.title}}</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src={{gameTitle.imageUrl}} alt="Game title image"
-        onerror="this.src='../../../../assets/images/dual-shock.jpeg'">
-    <mat-card-content>
-        <p>{{gameTitle.description}}</p>
-    </mat-card-content>
-    <mat-card-actions *ngIf="isLoggedIn$">
-        <span>{{gameTitle.likes.length}}</span> likes
-        <button (click)="like()" mat-icon-button style="color: rgb(255, 255, 255, .3);" *ngIf="(isLoggedIn$ |async) && canLike()">
-            <mat-icon>favorite</mat-icon>
-        </button>
-        <button (click)="dislike()" mat-icon-button color="warn" *ngIf="(isLoggedIn$ |async) && !canLike()">
-            <mat-icon>favorite</mat-icon>
-        </button>
-        <button mat-button>SHARE</button>
-    </mat-card-actions>
-</mat-card>
+<ng-container *ngIf="gameTitle">
+    <mat-card class="game-title-card">
+        <mat-card-header>
+            <div mat-card-avatar class="game-title-header-image"></div>
+            <mat-card-title>{{gameTitle.title}}</mat-card-title>
+            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src={{gameTitle.imageUrl}} alt="Game title image"
+            onerror="this.src='../../../../assets/images/dual-shock.jpeg'">
+        <mat-card-content>
+            <p>{{gameTitle.description}}</p>
+        </mat-card-content>
+        <mat-card-actions *ngIf="isLoggedIn$">
+            <span>{{gameTitle.likes.length}}</span> likes
+            <button (click)="like()" mat-icon-button style="color: rgb(255, 255, 255, .3);"
+                *ngIf="(isLoggedIn$ |async) && canLike()">
+                <mat-icon>favorite</mat-icon>
+            </button>
+            <button (click)="dislike()" mat-icon-button color="warn" *ngIf="(isLoggedIn$ |async) && !canLike()">
+                <mat-icon>favorite</mat-icon>
+            </button>
+            <button mat-button>COMMENT</button>
+        </mat-card-actions>
+    </mat-card>
+    <div class="comment-card">
+        <div class="card">
+            <div class="commentbox">
+                <div class="col-12 col-sm-12 header">
+                    <h4>Comments ({{gameTitle.comments.length}})</h4>
+                </div>
+                <div class="col-12 col-sm-12 body">
+                    <div class="comment-container">
+                        <div class="comment-form">
+                            <app-new-comment [gameTitleId]="gameTitle.id"
+                                (commentEvent)="refreshGameTitleRequest$.next(undefined)"></app-new-comment>                        </div>
+                    </div>
+                </div>
+            </div>
+            <app-comments-list [comments]="gameTitle.comments" (commentEvent)="refreshGameTitleRequest$.next(undefined)"></app-comments-list>
+        </div>
+    </div>
+</ng-container>
+<div></div>

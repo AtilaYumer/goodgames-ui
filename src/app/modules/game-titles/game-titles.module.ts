@@ -11,6 +11,9 @@ import { GameTitlesListItemComponent } from './game-titles-list-item/game-titles
 import { NewGameTitleComponent } from './new-game-title/new-game-title.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GameTitleDetailsComponent } from './game-title-details/game-title-details.component';
+import { NewCommentComponent } from './new-comment/new-comment.component';
+import { CommentsListComponent } from './comments-list/comments-list.component';
+import { CommentsListItemComponent } from './comments-list-item/comments-list-item.component';
 
 
 @NgModule({
@@ -18,7 +21,10 @@ import { GameTitleDetailsComponent } from './game-title-details/game-title-detai
     GameTitlesListComponent,
     GameTitlesListItemComponent,
     NewGameTitleComponent,
-    GameTitleDetailsComponent
+    GameTitleDetailsComponent,
+    NewCommentComponent,
+    CommentsListComponent,
+    CommentsListItemComponent
   ],
   imports: [
     CommonModule,

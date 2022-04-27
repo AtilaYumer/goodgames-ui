@@ -1,3 +1,5 @@
+import { CommentDto } from "./CommentDto";
+
 export class GameTitleDto {
     constructor(
         public id: number,
@@ -6,6 +8,7 @@ export class GameTitleDto {
         public imageUrl: string,
         public createdBy: string,
         public createdById: number,
-        public likes: number[]
+        public likes: number[],
+        public comments: CommentDto[]
     ) { }
 }

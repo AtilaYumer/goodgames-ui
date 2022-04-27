@@ -4,12 +4,6 @@ form {
     text-align: center;
 }
 
-fieldset {
-    border-radius: 0.3em;
-    padding: 0.8em;
-    background-color: #ffffff;
-}
-
 h2 {
     padding-top: 0;
     border-bottom: none;
@@ -20,7 +14,7 @@ form p {
     padding-top: 1.5rem;
 }
 
-input {
+input,textarea {
     flex: 0 1 100%;
     border: 1px solid;
     padding: 0.3em;
@@ -72,6 +66,6 @@ p.error {
     padding-top: 0;
 }
 
-.register .input-error {
+.input-error {
     border-left-color: red;
 }

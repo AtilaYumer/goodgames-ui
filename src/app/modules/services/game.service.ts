@@ -1,10 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CreateGameTitleDto } from '../model/CreateGameTitleDto';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { IGamePageable } from '../model/IGamePageable';
 import { GameTitleDto } from '../model/GameTitleDto';
+import { CreateCommentDto } from '../model/CreateCommentDto';
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +43,13 @@ export class GameTitleService {
 
   dislike$(gameTitleId: number): Observable<void> {
     return this.http.delete<void>(`${environment.urlApi}/game-titles/${gameTitleId}/like`, {});
+  }
+
+  comment$(gameTitleId: number, createCommentDto: CreateCommentDto) : Observable<void> {
+    return this.http.post<void>(`${environment.urlApi}/game-titles/${gameTitleId}/comments`, createCommentDto);
+  }
+
+  deleteComment$(gameTitleId:number, commentId: number) {
+    return this.http.delete<void>(`${environment.urlApi}/game-titles/${gameTitleId}/comments/${commentId}`);
   }
 }
