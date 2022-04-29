@@ -8,8 +8,7 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'home'
-  },
-  {
+  }, {
     path: 'home',
     component: HomeComponent
   },
@@ -18,9 +17,6 @@ const routes: Routes = [
     loadChildren: () => import('./modules/game-titles/game-titles.module').then(m => m.GameTitlesModule)
   }, {
     path: 'not-found',
-    component: NotFoundComponent
-  }, {
-    path: '**',
     component: NotFoundComponent
   }
 ];

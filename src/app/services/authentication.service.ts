@@ -47,12 +47,12 @@ export class AuthenticationService {
           }));
       } else {
         localStorage.clear();
-        this.router.navigateByUrl('/login');
+        this.router.navigateByUrl('/home');
         return of(undefined);
       }
     } else {
       localStorage.clear();
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/home');
       return of(undefined);
     }
   }
