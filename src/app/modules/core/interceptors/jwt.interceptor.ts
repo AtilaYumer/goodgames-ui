@@ -3,15 +3,18 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
+import * as e from 'express';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.authenticationService.getToken();
@@ -23,6 +26,17 @@ export class JwtInterceptor implements HttpInterceptor {
         withCredentials: true
       })
     }
-    return next.handle(request);
+    return next.handle(request).pipe(tap(() => { },
+      (err: any) => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            this.authenticationService.clearSession();
+            this.router.navigateByUrl('/login');
+          } else if (err.status === 404) {
+            this.router.navigateByUrl('/not-found');
+          }
+          return;
+        }
+      }));
   }
 }

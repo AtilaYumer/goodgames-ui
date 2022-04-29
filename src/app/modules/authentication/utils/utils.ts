@@ -8,10 +8,8 @@ export function rePasswordValidator(passwordFormControl: AbstractControl) {
                 passwordMissmatch: true
             }
         }
-
         return null;
     }
-
     return validtorFn;
 }
 

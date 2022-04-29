@@ -19,16 +19,25 @@ export class GameTitleService {
   }
 
   create$(gameTitle: CreateGameTitleDto): Observable<void> {
-    console.log(gameTitle);
-
     const formData = new FormData();
     formData.append('title', gameTitle.title);
     formData.append('description', gameTitle.description);
     if (gameTitle.image) {
       formData.append('image', gameTitle.image);
     }
-
     return this.http.post<void>(`${environment.urlApi}/game-titles/`, formData, {
+      withCredentials: true
+    });
+  }
+
+  edit$(gameTitleId: number, gameTitle: CreateGameTitleDto): Observable<void> {
+    const formData = new FormData();
+    formData.append('title', gameTitle.title);
+    formData.append('description', gameTitle.description);
+    if (gameTitle.image) {
+      formData.append('image', gameTitle.image);
+    }
+    return this.http.put<void>(`${environment.urlApi}/game-titles/${gameTitleId}`, formData, {
       withCredentials: true
     });
   }
@@ -51,5 +60,9 @@ export class GameTitleService {
 
   deleteComment$(gameTitleId:number, commentId: number) {
     return this.http.delete<void>(`${environment.urlApi}/game-titles/${gameTitleId}/comments/${commentId}`);
+  }
+
+  deleteGameTitle$(gameTitleId: number): Observable<void> {
+    return this.http.delete<void>(`${environment.urlApi}/game-titles/${gameTitleId}`)
   }
 }

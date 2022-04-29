@@ -1,4 +1,7 @@
 <ng-container *ngIf="gameTitle">
+    <ng-container *ngIf="errorMessage">
+        <p class="error">{{errorMessage}}</p>
+    </ng-container>
     <mat-card class="game-title-card">
         <mat-card-header>
             <div mat-card-avatar class="game-title-header-image"></div>
@@ -19,7 +22,11 @@
             <button (click)="dislike()" mat-icon-button color="warn" *ngIf="(isLoggedIn$ |async) && !canLike()">
                 <mat-icon>favorite</mat-icon>
             </button>
-            <button mat-button>COMMENT</button>
+            <button mat-button (click)="toggleCommentBox()">COMMENT</button>
+            <ng-container *ngIf="isLoggedIn$ && isUserOwner">
+                <button mat-button (click)="onEditBtnClicked(gameTitle.id)">EDIT</button>
+                <button mat-button (click)="delete()">DELETE</button>
+            </ng-container>
         </mat-card-actions>
     </mat-card>
     <div class="comment-card">
@@ -28,7 +35,7 @@
                 <div class="col-12 col-sm-12 header">
                     <h4>Comments ({{gameTitle.comments.length}})</h4>
                 </div>
-                <div class="col-12 col-sm-12 body">
+                <div class="col-12 col-sm-12 body" *ngIf="isCommentBoxOpened">
                     <div class="comment-container">
                         <div class="comment-form">
                             <app-new-comment [gameTitleId]="gameTitle.id"

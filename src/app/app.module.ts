@@ -15,12 +15,14 @@ import { StoreModule } from '@ngrx/store';
 import { IRootState } from './+store';
 import { currentUserReducer } from './+store/reducer';
 import { AuthenticationService } from './services/authentication.service';
+import { NotFoundComponent } from './modules/shared/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

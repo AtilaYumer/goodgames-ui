@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GameTitleDto } from '../../model/GameTitleDto';
 import { GameTitleService } from '../../services/game.service';
 
@@ -11,7 +12,10 @@ export class GameTitlesListComponent implements OnInit {
 
   gameTitles: GameTitleDto[] = [];
 
-  constructor(private gameTitlesService: GameTitleService) { }
+  constructor(
+    private gameTitlesService: GameTitleService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.gameTitlesService.getGames().subscribe({
@@ -20,7 +24,7 @@ export class GameTitlesListComponent implements OnInit {
         this.gameTitles = response.content;
       },
       error: (err) => {
-        console.log(err);
+        this.router.navigateByUrl('/not-found');
       }
     })
   }

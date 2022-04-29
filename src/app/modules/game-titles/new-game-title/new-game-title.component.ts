@@ -19,6 +19,8 @@ export class NewGameTitleComponent implements OnInit {
 
   image?: File;
 
+  errorMessage!: string;
+
   constructor(private fb: FormBuilder, private gameTitleService: GameTitleService, private router: Router) { }
 
   ngOnInit(): void {

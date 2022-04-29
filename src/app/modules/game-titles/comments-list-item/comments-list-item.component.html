@@ -2,7 +2,11 @@
 <div class="actions">
     <span>{{comment.createdDate| date: 'dd/MM/yyyy'}}</span>
     <span class="divider"></span>
-    <button class="btn btn-sm btn-danger" (click)="delete()">
-        <i class="fa fa-trash"></i>
-    </button>
+    <span>{{comment.username}}</span>
+    <span class="divider"></span>
+    <ng-container *ngIf="isLoggedIn$ && isUserOwner">
+        <button class="btn btn-sm btn-danger" (click)="delete()">
+            <i class="fa fa-trash"></i>
+        </button>
+    </ng-container>
 </div>

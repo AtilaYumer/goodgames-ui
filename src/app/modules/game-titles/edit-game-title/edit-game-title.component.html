@@ -1,0 +1,53 @@
+<ng-container *ngIf="gameTitleForm">
+    <form class="register" [formGroup]="gameTitleForm" (submit)="onSubmit()">
+        <div class="container">
+            <h1>Edit game title form</h1>
+            <ng-container *ngIf="errorMessage">
+                <p class="error">{{errorMessage}}</p>
+            </ng-container>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input formControlName="title" type="text" class="form-control" id="title"
+                    [class.input-error]="gameTitleForm.controls['title'].touched && gameTitleForm.controls['title'].invalid"
+                    value={{gameTitle.title}}>
+            </div>
+            <ng-container *ngIf="gameTitleForm.controls['title'].touched && gameTitleForm.controls['title'].invalid">
+                <p *ngIf="gameTitleForm.controls['title'].errors?.['minlength']" class="error">
+                    Title must be more than 5 characters long!
+                </p>
+                <p *ngIf="gameTitleForm.controls['title'].errors?.['maxlength']" class="error">
+                    Title must be more less than 20 characters long!
+                </p>
+            </ng-container>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea formControlName="description" type="text" class="form-control" id="description"
+                    [class.input-error]="gameTitleForm.controls['description'].touched && gameTitleForm.controls['description'].invalid">{{gameTitle.description}}</textarea>
+            </div>
+            <ng-container
+                *ngIf="gameTitleForm.controls['description'].touched && gameTitleForm.controls['description'].invalid">
+                <p *ngIf="gameTitleForm.controls['description'].errors?.['required']" class="error">
+                    Description is required!
+                </p>
+                <p *ngIf="gameTitleForm.controls['description'].errors?.['minlength']" class="error">
+                    Description must be at least 5 characters long!
+                </p>
+                <p *ngIf="gameTitleForm.controls['description'].errors?.['maxlength']" class="error">
+                    Description must less than 255 characters long!
+                </p>
+            </ng-container>
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input formControlName="image" id="image" type="file" accept="image/png" class="form-control"
+                    (change)="onFileChange($event)">
+            </div>
+            <ng-container *ngIf="gameTitleForm.controls['image'].touched && gameTitleForm.controls['image'].invalid">
+                <p *ngIf="gameTitleForm.controls['image'].errors?.['required']" class="error">
+                    Image is required!
+                </p>
+            </ng-container>
+        </div>
+        <button [disabled]="isFormDisabled()" type="submit"
+            class="btn btn-success">Submit</button>
+    </form>
+</ng-container>
