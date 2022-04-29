@@ -1,6 +1,11 @@
 <mat-card class="example-card">
   <mat-card-header>
-    <mat-card-title><a [routerLink]="['/game-titles', gameTitle.id]">{{gameTitle.title}}</a></mat-card-title>
+    <mat-card-title>
+      <a *ngIf="isLoggedIn |async" [routerLink]="['/game-titles', gameTitle.id]">{{gameTitle.title}}</a>
+      <ng-container *ngIf="!(isLoggedIn |async)">
+        {{gameTitle.title}}
+      </ng-container>
+    </mat-card-title>
     <mat-card-subtitle>Dog Breed</mat-card-subtitle>
   </mat-card-header>
   <img class="card-image" mat-card-image src={{gameTitle.imageUrl}} alt="Photo of a Shiba Inu"

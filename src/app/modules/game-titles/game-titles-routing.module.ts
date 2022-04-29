@@ -17,6 +17,7 @@ const routes: Routes = [
     component: NewGameTitleComponent
   }, {
     path: ":gameTitleId",
+    canActivate: [LoggedInGuard],
     component: GameTitleDetailsComponent
   }, {
     path: ':gameTitleId/edit',
