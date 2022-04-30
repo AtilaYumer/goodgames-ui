@@ -1,0 +1,14 @@
+#about{
+    color: #f9f9f9;
+    font-size: 15px;
+    max-width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+#about .content {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+}

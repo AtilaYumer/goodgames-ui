@@ -16,13 +16,15 @@ import { IRootState } from './+store';
 import { currentUserReducer } from './+store/reducer';
 import { AuthenticationService } from './services/authentication.service';
 import { NotFoundComponent } from './modules/shared/not-found/not-found.component';
+import { AboutComponent } from './modules/core/about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
