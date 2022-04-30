@@ -3,9 +3,8 @@
         <app-game-titles-list-item [gameTitle]="gameTitle"></app-game-titles-list-item>
     </div>
     <ng-container *ngIf="gameTitles.length === 0">
-        <div>
+        <div id="no-content">
             No game titles found!
         </div>
     </ng-container>
-
 </div>

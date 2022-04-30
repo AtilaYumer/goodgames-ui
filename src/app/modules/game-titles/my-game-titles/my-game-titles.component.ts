@@ -4,23 +4,21 @@ import { GameTitleDto } from '../../model/GameTitleDto';
 import { GameTitleService } from '../../services/game.service';
 
 @Component({
-  selector: 'app-game-titles-list',
-  templateUrl: './game-titles-list.component.html',
-  styleUrls: ['./game-titles-list.component.css']
+  selector: 'app-my-game-titles',
+  templateUrl: './my-game-titles.component.html',
+  styleUrls: ['./my-game-titles.component.css']
 })
-export class GameTitlesListComponent implements OnInit {
+export class MyGameTitlesComponent implements OnInit {
 
   gameTitles: GameTitleDto[] = [];
 
   constructor(
     private gameTitlesService: GameTitleService,
-    private router: Router
-  ) { }
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.gameTitlesService.getGames$().subscribe({
+    this.gameTitlesService.getMyGames$().subscribe({
       next: (response) => {
-        console.log(response);
         this.gameTitles = response.content;
       },
       error: (err) => {

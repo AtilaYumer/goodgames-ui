@@ -15,6 +15,7 @@ import { NewCommentComponent } from './new-comment/new-comment.component';
 import { CommentsListComponent } from './comments-list/comments-list.component';
 import { CommentsListItemComponent } from './comments-list-item/comments-list-item.component';
 import { EditGameTitleComponent } from './edit-game-title/edit-game-title.component';
+import { MyGameTitlesComponent } from './my-game-titles/my-game-titles.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { EditGameTitleComponent } from './edit-game-title/edit-game-title.compon
     NewCommentComponent,
     CommentsListComponent,
     CommentsListItemComponent,
-    EditGameTitleComponent
+    EditGameTitleComponent,
+    MyGameTitlesComponent
   ],
   imports: [
     CommonModule,

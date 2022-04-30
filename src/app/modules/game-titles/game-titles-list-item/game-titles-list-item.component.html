@@ -6,7 +6,7 @@
         {{gameTitle.title}}
       </ng-container>
     </mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    <mat-card-subtitle>{{gameTitle.createdBy}}</mat-card-subtitle>
   </mat-card-header>
   <img class="card-image" mat-card-image src={{gameTitle.imageUrl}} alt="Photo of a Shiba Inu"
     onerror="this.src='../../../../assets/images/dual-shock.jpeg'">

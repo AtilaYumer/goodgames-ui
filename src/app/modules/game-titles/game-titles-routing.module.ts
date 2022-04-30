@@ -5,6 +5,7 @@ import { NotFoundComponent } from '../shared/not-found/not-found.component';
 import { EditGameTitleComponent } from './edit-game-title/edit-game-title.component';
 import { GameTitleDetailsComponent } from './game-title-details/game-title-details.component';
 import { GameTitlesListComponent } from './game-titles-list/game-titles-list.component';
+import { MyGameTitlesComponent } from './my-game-titles/my-game-titles.component';
 import { NewGameTitleComponent } from './new-game-title/new-game-title.component';
 
 const routes: Routes = [
@@ -15,6 +16,10 @@ const routes: Routes = [
     path: 'new',
     canActivate: [LoggedInGuard],
     component: NewGameTitleComponent
+  },{
+    path: 'my-game-titles',
+    canActivate: [LoggedInGuard],
+    component: MyGameTitlesComponent
   }, {
     path: ":gameTitleId",
     canActivate: [LoggedInGuard],
@@ -24,7 +29,7 @@ const routes: Routes = [
     canActivate: [LoggedInGuard],
     component: EditGameTitleComponent
   }, {
-    path: '*',
+    path: '**',
     component: NotFoundComponent
   }
 ];

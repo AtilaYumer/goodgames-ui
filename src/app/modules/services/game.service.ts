@@ -14,8 +14,14 @@ export class GameTitleService {
 
   constructor(private http: HttpClient) { }
 
-  public getGames(): Observable<IGamePageable> {
+  getGames$(): Observable<IGamePageable> {
     return this.http.get<IGamePageable>(`${environment.urlApi}/game-titles`);
+  }
+
+  getMyGames$(): Observable<IGamePageable> {
+    return this.http.get<IGamePageable>(`${environment.urlApi}/game-titles/my-game-titles`, {
+      withCredentials: true
+    });
   }
 
   create$(gameTitle: CreateGameTitleDto): Observable<void> {
