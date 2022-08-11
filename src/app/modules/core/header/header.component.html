@@ -20,6 +20,11 @@
                     <li class="nav-item">
                         <a class="nav-link" routerLink="/game-titles/my-game-titles">My game titles</a>
                     </li>
+                    <ng-container *ngIf="isAdmin$ | async">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/game-titles/my-game-titles">Users</a>
+                        </li>
+                    </ng-container>
                 </ng-container>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/about">About</a>

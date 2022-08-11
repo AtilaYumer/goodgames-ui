@@ -5,6 +5,7 @@ import { IRootState } from 'src/app/+store';
 import { UserService } from 'src/app/services/user.service';
 import { IUser } from '../../model/IUser';
 import { Store } from '@ngrx/store'
+import { Role } from '../../model/Role';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +16,7 @@ export class HeaderComponent implements OnInit {
 
   user$: Observable<IUser | undefined> = this.store.select(routeState => routeState.currentUser);
   isLoggedIn$: Observable<boolean> = this.user$.pipe(map(user => !!user));
+  isAdmin$: Observable<boolean> = this.user$.pipe(map(user => Role.ADMIN == user?.role));
 
 
   constructor(private userService: UserService, private router: Router, private store: Store<IRootState>) { }
