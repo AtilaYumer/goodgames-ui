@@ -10,7 +10,7 @@ import { UserDto } from '../../model/UserDto';
 })
 export class UsersComponent implements OnInit {
 
-  roles: Role[] = [Role.ADMIN, Role.USER];
+  roles: Role[] = [Role.ROLE_ADMIN, Role.ROLE_USER];
 
   users: UserDto[] = [];
 

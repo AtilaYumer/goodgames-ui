@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   user$: Observable<IUser | undefined> = this.store.select(routeState => routeState.currentUser);
   isLoggedIn$: Observable<boolean> = this.user$.pipe(map(user => !!user));
-  isAdmin$: Observable<boolean> = this.user$.pipe(map(user => Role.ADMIN == user?.role));
+  isAdmin$: Observable<boolean> = this.user$.pipe(map(user => Role.ROLE_ADMIN == user?.role));
   activeTab: string = '/';
 
 
