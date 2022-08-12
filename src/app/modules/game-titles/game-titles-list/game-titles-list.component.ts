@@ -20,7 +20,6 @@ export class GameTitlesListComponent implements OnInit {
   ngOnInit(): void {
     this.gameTitlesService.getGames$().subscribe({
       next: (response) => {
-        console.log(response);
         this.gameTitles = response.content;
       },
       error: (err) => {

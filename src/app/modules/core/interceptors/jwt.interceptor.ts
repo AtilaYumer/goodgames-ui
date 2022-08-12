@@ -6,10 +6,9 @@ import {
   HttpInterceptor,
   HttpErrorResponse
 } from '@angular/common/http';
-import { catchError, Observable, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
-import * as e from 'express';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -18,7 +17,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.authenticationService.getToken();
-    if (token && !(request.url.match(/users/) && !request.url.match(/users\/info/)) && !(request.method === "GET" && request.url.match(/^.*\/game-titles[\/]{0,1}$/g))) {
+    if (token) {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
@@ -32,6 +31,8 @@ export class JwtInterceptor implements HttpInterceptor {
           if (err.status === 401) {
             this.authenticationService.clearSession();
             this.router.navigateByUrl('/login');
+          } else if(err.status === 403) {
+            this.router.navigateByUrl('/');
           } else if (err.status === 404) {
             this.router.navigateByUrl('/not-found');
           }

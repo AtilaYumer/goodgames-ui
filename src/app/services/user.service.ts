@@ -20,6 +20,10 @@ export class UserService {
 
   constructor(private http: HttpClient, private authenticationService: AuthenticationService, private store: Store<IRootState>) { }
 
+  getUsers$() : Observable<UserDto[]> {
+    return this.http.get<UserDto[]>(`${environment.urlApi}/users`, { withCredentials: true});
+  }
+
   register$(userDto: UserDto): Observable<void> {
     return this.http.post<void>(`${environment.urlApi}/users`, userDto);
   }
@@ -44,5 +48,9 @@ export class UserService {
   logout(): void {
     this.authenticationService.clearSession();
     this.store.dispatch(logout());
+  }
+
+  updateUserRole$(user: UserDto): Observable<void> {
+    return this.http.put<void>(`${environment.urlApi}/users/${user.id}/role`, user, { withCredentials: true});
   }
 }

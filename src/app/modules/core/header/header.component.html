@@ -8,26 +8,26 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" routerLink="/home">Home</a>
+                    <a class="nav-link" [ngClass]="{'active' : activeTab === 'home'}" (click)="setActiveTab('home')" routerLink="/home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/game-titles">Game titles</a>
+                    <a class="nav-link" [ngClass]="{'active' : activeTab === 'game-titles'}" (click)="setActiveTab('game-titles')"  routerLink="/game-titles">Game titles</a>
                 </li>
                 <ng-container *ngIf="isLoggedIn$ | async">
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/game-titles/new">Add new game title</a>
+                        <a class="nav-link" [ngClass]="{'active' : activeTab === 'new-game-title'}" (click)="setActiveTab('new-game-title')" routerLink="/game-titles/new">Add new game title</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/game-titles/my-game-titles">My game titles</a>
+                        <a class="nav-link" [ngClass]="{'active' : activeTab === 'my-game-titles'}" (click)="setActiveTab('my-game-titles')" routerLink="/game-titles/my-game-titles">My game titles</a>
                     </li>
                     <ng-container *ngIf="isAdmin$ | async">
                         <li class="nav-item">
-                            <a class="nav-link" routerLink="/game-titles/my-game-titles">Users</a>
+                            <a class="nav-link" [ngClass]="{'active' : activeTab === 'users'}" (click)="setActiveTab('users')" routerLink="/users">Users</a>
                         </li>
                     </ng-container>
                 </ng-container>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/about">About</a>
+                    <a class="nav-link" [ngClass]="{'active' : activeTab === 'about'}" (click)="setActiveTab('about')" routerLink="/about">About</a>
                 </li>
             </ul>
             <div class="d-flex">

@@ -17,6 +17,8 @@ import { currentUserReducer } from './+store/reducer';
 import { AuthenticationService } from './services/authentication.service';
 import { NotFoundComponent } from './modules/shared/not-found/not-found.component';
 import { AboutComponent } from './modules/core/about/about.component';
+import { UsersComponent } from './modules/core/users/users.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,9 +26,11 @@ import { AboutComponent } from './modules/core/about/about.component';
     HeaderComponent,
     FooterComponent,
     NotFoundComponent,
-    AboutComponent
+    AboutComponent,
+    UsersComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

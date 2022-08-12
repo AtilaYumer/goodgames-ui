@@ -1,0 +1,37 @@
+<div class="table-wrapper table-responsive">
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users; let i = index">
+                <th scope="row">{{ i + 1}}</th>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <select class='select-option' [(ngModel)]="user.role" required
+                        (change)="onRoleChange($any($event.target).value, user)">
+                        <option class='option' *ngFor='let role of roles' [value]="role">{{ role }}</option>
+                    </select>
+                </td>
+                <td>
+                    <button (click)="updateUserRole(user)" type="submit" class="btn btn-success">Update</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>ˇ
+
+<ng-container *ngIf="users.length === 0">
+    <div>
+        No users found!
+    </div>
+</ng-container>

@@ -19,7 +19,7 @@ const routes: Routes = [
   },{
     path: 'my-game-titles',
     canActivate: [LoggedInGuard],
-    component: MyGameTitlesComponent
+    component: MyGameTitlesComponent, 
   }, {
     path: ":gameTitleId",
     canActivate: [LoggedInGuard],
